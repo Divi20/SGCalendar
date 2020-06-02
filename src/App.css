@@ -1,0 +1,85 @@
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
+.App {
+  text-align: center;
+  padding:0;
+  margin:0;
+  font-family:'Raleway', sans-serif;
+}
+
+.main{
+display:flex;
+}
+
+.sidebar-container{
+  min-height: "100vh";
+  background-color: lightgrey;
+}
+
+.masthead {
+  position: relative;
+  width: 1920px;
+  height: 50px;
+  background-color: #696974;
+}
+
+.ellipse2{
+  position: absolute;
+width: 48px;
+height: 48px;
+left: 32px;
+top: calc(50% - 48px/2);
+border-radius: "25px";
+background: #C4C4C4;
+}
+.unlearnkidcontent{
+  position: absolute;
+width: 349px;
+height: 36px;
+left: 104px;
+top: calc(50% - 36px/2);
+
+/* A3_18_Default CTA */
+font-family: Work Sans;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 36px;
+/* identical to box height, or 200% */
+display: flex;
+align-items: center;
+
+/* Greyscale 3 */
+color: #B4B4BD;
+}
+
+.frame{
+  display: flex;
+flex-direction: row;
+padding: 0px 48px;
+
+position: absolute;
+width: 896px;
+height: 60px;
+right: 0px;
+top: calc(50% - 60px/2 + 2px);
+}
+
+.sidebar{
+  width: 200px;
+  padding-top: 25px;
+}
+
+.sidebar-link{
+  padding: 10px;
+}
+.sidebar-link:home{
+  border-radius: 5px solid dimgray;
+  background-color: gainsboro;
+}
+.content-container{
+  padding: 25px;
+  font-family: 'Playfair Display', serif;
+  line-height: 1.5em;
+}
