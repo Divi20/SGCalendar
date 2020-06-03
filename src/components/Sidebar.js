@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SidebarIcon from './SidebarIcon'
+import Time from './TimeComponent'
 export default class Sidebar extends Component {
   state = {
      isOpen: true
@@ -11,9 +12,8 @@ export default class Sidebar extends Component {
      }
  
      return <div className="sidebar">
-       <div className="sidebar-link">Home</div>
-       <div className="sidebar-link">About</div>
-       <div className="sidebar-link">Contact</div>
+    <Time></Time>
+       
     </div>
   }
 toggleSidebar = () => {
@@ -28,7 +28,7 @@ render() {
         <SidebarIcon
           isOpen={this.state.isOpen}
           handleClick={this.toggleSidebar}
-        />
+        style={{marginTop:0}}/>
       </div>
     </div>
   }

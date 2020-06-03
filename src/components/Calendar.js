@@ -29,7 +29,10 @@ export default class EventCalender extends React.Component{
   eventClick = (info) => {
     var eventObj = info.event;
     var eventId = info.event.id;
-    console.log(eventId);
+    
+    this.setState({name : eventObj.title});
+    this.setState({currentdate : eventObj.start})
+    
   $('#createDeleteEventModal').modal('show')
   $('#deleteEventButton').click(function() {
       eventObj.remove();
@@ -114,17 +117,16 @@ export default class EventCalender extends React.Component{
           id = "description"
           onChange={this.myChangeHandler}
         />
-        <p>Enter your remindme:</p>
-        <input
-          type='text'
-          name='remindme'
-          id =  "remindme"
-          onChange={this.myChangeHandler}
-        />
+      
+       
         <div className="row">
         <this.handleStartTime></this.handleStartTime>
         <this.handleEndTime></this.handleEndTime>
         </div>
+
+        <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+    <label class="form-check-label" for="exampleCheck1">remindme</label>
+  
 
 <input
 type = 'submit'
@@ -149,35 +151,49 @@ name = 'submit'
           <button type="button" className="close" data-dismiss="modal">&times;</button>
           <h4 className="modal-title"></h4>
         </div>
+        
         <div className="modal-body">
-        <form onSubmit={this.mySubmitHandler}>
-        <h1>Hello {this.state.name} {this.state.age}</h1>
-        <p>Enter your name:</p>
-        <input
-          type='text'
-          name='name'
-          id = "cdname"
-          onChange={this.myChangeHandler}
-        />
-        <p>Enter your age:</p>
-        <input
-          type='text'
-          name='description'
-          id = "cddescription"
-          onChange={this.myChangeHandler}
-        />
-        <p>Enter your remindme:</p>
-        <input
-          type='text'
-          name='remindme'
-          id =  "remindme"
-          onChange={this.myChangeHandler}
-        />
+          <form onSubmit={this.mySubmitHandler}>
+            <h1>Hello</h1>
+            <p>Edit Event Name:</p>
+            <input
+              type='text'
+              name='name'
+              id = "cdname"
+              onChange={this.myChangeHandler}
+              placeholder={this.state.name}
+            />
+
+            <p>Edit event date:</p>
+            <input
+              type='text'
+              name='description'
+              id = "cddescription"
+              placeholder={this.state.currentdate}
+            />
+
+            <p>
+              <this.handleStartTime></this.handleStartTime>
+              <this.handleEndTime></this.handleEndTime>
+            
+            </p>
+             
+            <p>Edit remindme:</p>
+            <input
+              type='text'
+              name='remindme'
+              id =  "remindme"
+            />
 
 
         <p>
         <button id="deleteEventButton" type="button" class="btn btn-default">Delete</button>
       </p>
+
+      <input
+        type = 'submit'
+        name = 'submit'
+        />
         </form>
          
         </div>

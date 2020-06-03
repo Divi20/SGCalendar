@@ -14,15 +14,9 @@ display:flex;
 
 .sidebar-container{
   min-height: "100vh";
-  background-color: lightgrey;
+  background-color: #fff;
 }
 
-.masthead {
-  position: relative;
-  width: 1920px;
-  height: 50px;
-  background-color: #696974;
-}
 
 .ellipse2{
   position: absolute;
@@ -31,9 +25,9 @@ height: 48px;
 left: 32px;
 top: calc(50% - 48px/2);
 border-radius: "25px";
-background: #C4C4C4;
+
 }
-.unlearnkidcontent{
+.headingmain{
   position: absolute;
 width: 349px;
 height: 36px;
@@ -51,7 +45,7 @@ display: flex;
 align-items: center;
 
 /* Greyscale 3 */
-color: #B4B4BD;
+color:black;
 }
 
 .frame{
@@ -82,4 +76,7 @@ top: calc(50% - 60px/2 + 2px);
   padding: 25px;
   font-family: 'Playfair Display', serif;
   line-height: 1.5em;
+}
+.create{
+  border-radius: 35px;
 }
