@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -6,15 +6,22 @@ import interactionPlugin from '@fullcalendar/interaction'
 import $ from 'jquery'
 import Time from './TimeComponent'
 
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+
 export default class EventCalender extends React.Component{
+
+
 
   calendarComponentRef = React.createRef()
   state = {
     name : '',
+    startDate : new Date(),
+    endDate : new Date(),
     currentdate: null,
     calendarWeekends: true,
     calendarEvents: [ // initial event data
-      { title: 'Event Now', start: new Date()}
+      { title: 'Event Now', start: new Date(), end: null}
     ],
     eventTimeFormat: { // like '14:30:00'
     hour: '2-digit',
@@ -22,7 +29,7 @@ export default class EventCalender extends React.Component{
     second: '2-digit',
     meridiem: false
   },
-  displayEventTime:'true',
+
   eventClick: function(info) {
     var eventObj = info.event;
 
@@ -46,16 +53,19 @@ export default class EventCalender extends React.Component{
 
   mySubmitHandler = (event) => {
     event.preventDefault();
-    alert("You are submitting " + this.state.name + this.state.description + this.state.remindme);
+    window.confirm("You are submitting " + this.state.name + this.state.description + this.state.remindme + this.state.startDate + this.state.endDate);
+    if(this.state.name === ""){
+      alert("please enter event");
+    }
+    else{
     this.setState({  // add new event data
       calendarEvents: this.state.calendarEvents.concat({ // creates a new array
         title: this.state.name,
-        start: this.state.currentdate,
-        allDay: 'false',
-        displayEventTime: 'true'
+        start:this.state.startDate,
+        end: this.state.endDate
       })
     })
-
+  }
   }
   myChangeHandler = (event) => {
     let nam = event.target.name;
@@ -91,6 +101,9 @@ export default class EventCalender extends React.Component{
             events={ this.state.calendarEvents }
             dateClick={ this.handleDateClick }
             eventClick = {this.state.eventClick}
+            editable = 'true'
+            displayEventTime = 'true'
+            displayEventEnd = 'true'
             />
           
   <div className="modal fade" id="addEventModal" role="dialog">
@@ -124,7 +137,15 @@ export default class EventCalender extends React.Component{
           id =  "remindme"
           onChange={this.myChangeHandler}
         />
-<Time></Time>
+        <div className="row">
+        <this.handleStartTime></this.handleStartTime>
+        <this.handleEndTime></this.handleEndTime>
+        </div>
+
+<input
+type = 'submit'
+name = 'submit'
+/>
      
         </form>
          
@@ -193,6 +214,36 @@ export default class EventCalender extends React.Component{
       this.setState({currentdate : arg.date});
     
     }
+
+   handleStartTime = () => {
+     
+      return (
+        <DatePicker
+          selected={this.state.startDate}
+          onChange={date => this.setState({startDate: date}) }
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          timeCaption="time"
+          dateFormat="MMMM d, yyyy h:mm aa"
+        />
+      );
+    };
+
+    handleEndTime = () => {
+      
+      return (
+        <DatePicker
+        selected={this.state.endDate}
+        onChange={date => this.setState({endDate: date}) }
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          timeCaption="time"
+          dateFormat="MMMM d, yyyy h:mm aa"
+        />
+      );
+    };
 
   
 
