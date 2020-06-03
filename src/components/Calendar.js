@@ -4,15 +4,10 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import $ from 'jquery'
-import Time from './TimeComponent'
-
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class EventCalender extends React.Component{
-
-
-
   calendarComponentRef = React.createRef()
   state = {
     name : '',
@@ -28,28 +23,20 @@ export default class EventCalender extends React.Component{
     minute: '2-digit',
     second: '2-digit',
     meridiem: false
-  },
-
-  eventClick: function(info) {
-    var eventObj = info.event;
-
-    if (eventObj.url) {
-      alert(
-        'Clicked' + eventObj.title + '.\n' +
-        'Will open ' + eventObj.url + ' in a new tab'
-      );
-
-      window.open(eventObj.url);
-
-      info.jsEvent.preventDefault(); // prevents browser from following link in current tab.
-    } else {
-      $('#createDeleteEventModal').modal('show')
-    
     }
   }
-  }
 
- 
+  eventClick = (info) => {
+    var eventObj = info.event;
+    var eventId = info.event.id;
+    console.log(eventId);
+  $('#createDeleteEventModal').modal('show')
+  $('#deleteEventButton').click(function() {
+      eventObj.remove();
+  });
+  
+  this.setState({eventToDelete : eventId});
+}
 
   mySubmitHandler = (event) => {
     event.preventDefault();
@@ -82,9 +69,6 @@ export default class EventCalender extends React.Component{
     let calendarApi = this.calendarComponentRef.current.getApi()
     calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
   }
-
-
-
     render(){
         return(
             <div>
@@ -100,7 +84,7 @@ export default class EventCalender extends React.Component{
             weekends={ this.state.calendarWeekends }
             events={ this.state.calendarEvents }
             dateClick={ this.handleDateClick }
-            eventClick = {this.state.eventClick}
+            eventClick = {this.eventClick}
             editable = 'true'
             displayEventTime = 'true'
             displayEventEnd = 'true'
@@ -191,7 +175,9 @@ name = 'submit'
         />
 
 
-  
+        <p>
+        <button id="deleteEventButton" type="button" class="btn btn-default">Delete</button>
+      </p>
         </form>
          
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from './components/Home'
+import { FaBars,FaClosedCaptioning } from 'react-icons/fa'
 import './App.css';
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
   return (
     <div className="iframe App">
     <div class="masthead">
-<div className="ellipse2"></div>
+<div className="ellipse2"> <FaBars/></div>
 <div className="unlearnkidcontent">Unlearn kid | Content Authorization Tool</div>
 <div className="container frame">
 <div className="nav-item home active">Home</div>
