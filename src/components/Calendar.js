@@ -32,7 +32,7 @@ export default class EventCalender extends React.Component{
     
     this.setState({name : eventObj.title});
     this.setState({currentdate : eventObj.start})
-    
+
   $('#createDeleteEventModal').modal('show')
   $('#deleteEventButton').click(function() {
       eventObj.remove();
@@ -117,21 +117,24 @@ export default class EventCalender extends React.Component{
           id = "description"
           onChange={this.myChangeHandler}
         />
-      
+        <p>Choose the date range</p>
        
-        <div className="row">
+        <div className="row" style={{justifyContent:"center"}}>
+       
         <this.handleStartTime></this.handleStartTime>
         <this.handleEndTime></this.handleEndTime>
         </div>
-
+<br></br>
         <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
     <label class="form-check-label" for="exampleCheck1">remindme</label>
   
-
+<div>
 <input
 type = 'submit'
 name = 'submit'
 />
+</div>
+
      
         </form>
          
